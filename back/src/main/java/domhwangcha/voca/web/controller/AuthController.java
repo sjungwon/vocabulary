@@ -70,4 +70,13 @@ public class AuthController {
         return new ApiResponse<>("ok");
     }
 
+    @PostMapping("logout")
+    public ApiResponse<String> logout(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            session.invalidate();
+        }
+        return new ApiResponse<>("ok");
+    }
+
 }
