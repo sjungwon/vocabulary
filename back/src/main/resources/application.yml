@@ -2,15 +2,16 @@ spring:
   output:
     ansi.enabled: always
   datasource:
-    url: jdbc:h2:tcp://localhost/~/h2/db/voca
+#    url: jdbc:h2:tcp://localhost/~/h2/db/voca
+    url: jdbc:h2:mem:voca
     username: sa
     password:
     driver-class-name: org.h2.Driver
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: create
       dialect: org.hibernate.dialect.H2Dialect
-      open-in-view: false
     properties:
       hibernate:
         format_sql: true
