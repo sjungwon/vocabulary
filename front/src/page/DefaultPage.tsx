@@ -8,6 +8,8 @@ const DefaultPage: React.FC = () => {
         alt="상명이미지"
         style={{
           width: "80%",
+          maxWidth: "700px",
+          maxHeight: "80vh",
           margin: "auto",
         }}
       />
