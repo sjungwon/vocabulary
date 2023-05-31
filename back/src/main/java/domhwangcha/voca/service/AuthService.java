@@ -7,9 +7,11 @@ import domhwangcha.voca.exception.NotFoundException;
 import domhwangcha.voca.exception.UnauthorizedException;
 import domhwangcha.voca.repository.MemberRepository;
 import domhwangcha.voca.service.dto.auth.LoginDto;
+import domhwangcha.voca.service.dto.auth.ProfileDto;
 import domhwangcha.voca.service.dto.auth.RegisterDto;
 import domhwangcha.voca.service.dto.auth.SessionDto;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +33,12 @@ public class AuthService {
         }
 
         return new SessionDto(member);
+    }
+
+    public ProfileDto sessionLogin(Long id){
+        Member member = this.memberRepository.findById(id).orElseThrow(UnauthorizedException::new);
+
+        return new ProfileDto(member);
     }
 
     @Transactional

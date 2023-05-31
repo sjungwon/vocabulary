@@ -3,8 +3,11 @@ package domhwangcha.voca.web.controller;
 import domhwangcha.voca.exception.BadRequestException;
 import domhwangcha.voca.service.AuthService;
 import domhwangcha.voca.service.dto.auth.LoginDto;
+import domhwangcha.voca.service.dto.auth.ProfileDto;
 import domhwangcha.voca.service.dto.auth.RegisterDto;
 import domhwangcha.voca.service.dto.auth.SessionDto;
+import domhwangcha.voca.web.auth.Authorization;
+import domhwangcha.voca.web.auth.LoginMember;
 import domhwangcha.voca.web.auth.SessionConst;
 import domhwangcha.voca.web.auth.UserSession;
 import domhwangcha.voca.web.dto.ApiResponse;
@@ -32,7 +35,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("login")
-    public ApiResponse<String> login(@RequestBody  LoginForm loginForm, HttpServletRequest httpServletRequest){
+    public ApiResponse<ProfileDto> login(@RequestBody  LoginForm loginForm, HttpServletRequest httpServletRequest){
         LoginDto loginDto = new LoginDto(loginForm.getAccount(), loginForm.getPassword());
 
         SessionDto sessionDto = authService.login(loginDto);
@@ -41,7 +44,14 @@ public class AuthController {
 
         session.setAttribute(SessionConst.USER_SESSION.name(),new UserSession(sessionDto.getId(), sessionDto.getRole()));
 
-        return new ApiResponse<>("ok");
+        return new ApiResponse<>(sessionDto.getProfileDto());
+    }
+
+    @PostMapping("session")
+    @Authorization
+    public ApiResponse<ProfileDto> sessionLogin(@LoginMember UserSession userSession){
+        ProfileDto profileDto = this.authService.sessionLogin(userSession.getId());
+        return new ApiResponse<>(profileDto);
     }
 
     @PostMapping("register")
