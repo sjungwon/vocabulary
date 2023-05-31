@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from "axios";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { LoginFormType } from "../type/auth.type";
 import { ApiResponse } from "../type/repository.type";
+import { VocabularyType } from "../type/vocabulary.type";
 
 const useAuthRepository = () => {
   const login = useCallback(async (loginForm: LoginFormType) => {
@@ -20,16 +21,45 @@ const useAuthRepository = () => {
     return response.data;
   }, []);
 
-  return {
-    login,
-    logout,
-  };
+  const repo = useMemo(
+    () => ({
+      login,
+      logout,
+    }),
+    [login, logout]
+  );
+
+  return repo;
+};
+
+const useVocabularyRepository = () => {
+  const getTodayVoca = useCallback(async (size: number) => {
+    const response = await axios.get<
+      void,
+      AxiosResponse<ApiResponse<VocabularyType[]>>
+    >(`/vocabulary?size=${size}`);
+    return response.data;
+  }, []);
+
+  const repo = useMemo(
+    () => ({
+      getTodayVoca,
+    }),
+    [getTodayVoca]
+  );
+
+  return repo;
 };
 
 const useRepository = () => {
   const AuthRepository = useAuthRepository();
+  const VocabularyRepository = useVocabularyRepository();
 
-  return { AuthRepository };
+  const repo = useMemo(
+    () => ({ AuthRepository, VocabularyRepository }),
+    [AuthRepository, VocabularyRepository]
+  );
+  return repo;
 };
 
 export default useRepository;
