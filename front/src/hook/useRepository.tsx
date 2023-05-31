@@ -1,4 +1,4 @@
-import axios, { Axios, AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useCallback } from "react";
 import { LoginFormType } from "../type/auth.type";
 import { ApiResponse } from "../type/repository.type";
