@@ -112,9 +112,6 @@
   "korean": "주의깊게, 조심스럽게"
  },
  {
-  "english": "draw + praise\/inspiration + from 사람"
- },
- {
   "english": "acquaint",
   "korean": "~에게 숙지시키다"
  },
@@ -219,8 +216,8 @@
   "korean": "유익한, 정보를 주는"
  },
  {
-  "english": "informative brochure\/booklet",
-  "korean": "유익한 브로셔\/소책자"
+  "english": "informative brochure, booklet",
+  "korean": "유익한 브로셔, 소책자"
  },
  {
   "english": "note",
@@ -251,9 +248,6 @@
   "korean": "~을 두고 경쟁하다"
  },
  {
-  "english": "demand that + S + R.V"
- },
- {
   "english": "wane",
   "korean": "감소, 쇠퇴"
  },
@@ -274,7 +268,7 @@
   "korean": "할부"
  },
  {
-  "english": "at an affordable + rate\/price",
+  "english": "at an affordable rate price",
   "korean": "적당한 가격에"
  },
  {
@@ -290,12 +284,12 @@
   "korean": "(상품이) 보증 기간 중인"
  },
  {
-  "english": "original\/valid + receipt",
-  "korean": "원본\/유효한 영수증"
+  "english": "original valid receipt",
+  "korean": "원본 유효한 영수증"
  },
  {
   "english": "upon receipt of",
-  "korean": "~을 수령\/접수하는 즉시"
+  "korean": "~을 수령 접수하는 즉시"
  },
  {
   "english": "promotional offers",
@@ -406,7 +400,7 @@
   "korean": "관례적인"
  },
  {
-  "english": "fill out\/in",
+  "english": "fill out in",
   "korean": "(서류에) 적어 넣다, 작성하다"
  },
  {
@@ -669,8 +663,8 @@
   "korean": "휴가로"
  },
  {
-  "english": "ahead of\/behind schedule",
-  "korean": "예정보다 먼저\/늦게"
+  "english": "ahead of behind schedule",
+  "korean": "예정보다 먼저 늦게"
  },
  {
   "english": "assent",
@@ -693,7 +687,7 @@
  },
  {
   "english": "a welcome addition to",
-  "korean": "~에 환영받는 물건\/사람"
+  "korean": "~에 환영받는 물건 사람"
  },
  {
   "english": "be welcome to do",
@@ -728,8 +722,8 @@
   "korean": "경험 없는, 미숙한"
  },
  {
-  "english": "explain\/know + in detail",
-  "korean": "상세히 설명하다\/알다"
+  "english": "explain know + in detail",
+  "korean": "상세히 설명하다 알다"
  },
  {
   "english": "a feasible alternative to",
@@ -900,8 +894,8 @@
   "korean": "(의견)에 동의하다"
  },
  {
-  "english": "agree to + 제안\/조건",
-  "korean": "(제안\/조건)에 찬성하다"
+  "english": "agree to + 제안 조건",
+  "korean": "(제안 조건)에 찬성하다"
  },
  {
   "english": "agree + to부정사",
@@ -989,7 +983,7 @@
  },
  {
   "english": "affect",
-  "korean": "~에 영향을 미치다, \n불리하게 작용하다"
+  "korean": "~에 영향을 미치다, 불리하게 작용하다"
  },
  {
   "english": "effect",
@@ -1028,7 +1022,7 @@
   "korean": "적극적으로"
  },
  {
-  "english": "during\/in + one's absence",
+  "english": "during in one's absence",
   "korean": "~의 부재 중에"
  },
  {
@@ -1253,7 +1247,7 @@
  },
  {
   "english": "subject",
-  "korean": "~의 영향을 받기 쉬운, \n(동의 등을) 조건으로 하는"
+  "korean": "~의 영향을 받기 쉬운, (동의 등을) 조건으로 하는"
  },
  {
   "english": "affordability",
@@ -1325,7 +1319,7 @@
  },
  {
   "english": "oblige",
-  "korean": "어쩔 수 없이 ~하게 하다\n~에게 강요하다"
+  "korean": "어쩔 수 없이 ~하게 하다, ~에게 강요하다"
  },
  {
   "english": "complimentary",
@@ -1337,7 +1331,7 @@
  },
  {
   "english": "accommodate",
-  "korean": "~을 수용하다, 숙박시키다\n(조건, 요구)만족시키다"
+  "korean": "~을 수용하다, 숙박시키다, (조건, 요구)만족시키다"
  },
  {
   "english": "considerable",
@@ -1373,7 +1367,7 @@
  },
  {
   "english": "waive",
-  "korean": "(규칙) 적용하지 않다, \n(권리) 포기하다"
+  "korean": "(규칙) 적용하지 않다, (권리) 포기하다"
  },
  {
   "english": "authorship",
@@ -1406,9 +1400,6 @@
  {
   "english": "unanimous",
   "korean": "만장일치의, 동의하는"
- },
- {
-  "english": "express unanimous support 만장일치의 지지를 표명하다"
  },
  {
   "english": "consensus",
@@ -1445,15 +1436,6 @@
  {
   "english": "crowded",
   "korean": "붐비는, 복잡한"
- },
- {
-  "english": "unterdo construction\/renovations 공사\/보수를 치루다"
- },
- {
-  "english": "undergo extensive training 폭 넓은 훈련을 받다"
- },
- {
-  "english": "undergo improvement 개선을 거치다"
  },
  {
   "english": "narrowly",
