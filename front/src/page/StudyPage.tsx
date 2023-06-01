@@ -1,4 +1,13 @@
-import { Button, Col, Divider, Input, Modal, Row, Typography } from "antd";
+import {
+  Button,
+  Col,
+  Divider,
+  Input,
+  Modal,
+  Row,
+  Space,
+  Typography,
+} from "antd";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import QueryString from "qs";
@@ -48,22 +57,6 @@ const PageModal: React.FC = () => {
           {errorMsg}
         </Typography.Paragraph>
       </Modal>
-    </>
-  );
-};
-
-const Default: React.FC = () => {
-  return (
-    <>
-      <Row>
-        <PageModal />
-      </Row>
-      <Row>
-        <Link to="weak">약점 단어</Link>
-      </Row>
-      <Row>
-        <Link to="my">내 단어장</Link>
-      </Row>
     </>
   );
 };
@@ -136,9 +129,80 @@ const Today: React.FC = () => {
   );
 };
 
+const Wrong: React.FC = () => {
+  const { VocabularyRepository } = useRepository();
+
+  const [voca, setVoca] = useState<VocabularyType[]>([]);
+
+  const [message, setMessage] = useState<string>("");
+
+  const getData = useCallback(async () => {
+    try {
+      const response = await VocabularyRepository.getWrongVoca();
+      setVoca(response.data);
+      if (response.data.length < 1) {
+        setMessage("틀린 단어가 없습니다.");
+      }
+    } catch (e) {
+      window.alert("단어를 가져오는데 실패했습니다.");
+    }
+  }, [VocabularyRepository]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        padding: "2rem",
+        maxWidth: "1000px",
+        margin: "auto",
+      }}
+    >
+      {message ? <>{message}</> : null}
+      {voca.map((v) => (
+        <VocaElem key={v.english} data={v} />
+      ))}
+    </div>
+  );
+};
+
+const Default: React.FC = () => {
+  return (
+    <>
+      <div
+        style={{
+          alignItems: "center",
+          marginTop: "5rem",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <Row>
+          <Typography.Title style={{ color: "white" }} level={1}>
+            Study
+          </Typography.Title>
+        </Row>
+        <Row style={{ marginTop: "2rem" }}>
+          <PageModal />
+        </Row>
+        <Row style={{ marginTop: "2rem" }}>
+          <Link to="wrong">
+            <Button>틀렸던 단어</Button>
+          </Link>
+        </Row>
+      </div>
+    </>
+  );
+};
+
 const StudyPage = {
   Default,
   Today,
+  Wrong,
 };
 
 export default StudyPage;

@@ -98,7 +98,7 @@ type ResultProps = {
 
 const Result: React.FC<ResultProps> = ({ data }) => {
   if (!data) {
-    return <>{"로딩중"}</>;
+    return data;
   }
   return (
     <>
@@ -255,6 +255,8 @@ const PrevResult: React.FC = () => {
 
   const navigate = useNavigate();
 
+  const [message, setMessage] = useState<string>("");
+
   const getData = useCallback(async () => {
     try {
       const response = await TestRepository.getPrevResult();
@@ -263,28 +265,62 @@ const PrevResult: React.FC = () => {
       const err = e as AxiosError;
       console.log(err);
       if (err.response?.status === 404) {
-        window.alert("완료된 시험이 존재하지 않습니다.");
-        navigate("/test");
+        setMessage("완료된 시험이 없습니다.");
       }
     }
-  }, [TestRepository, navigate]);
+  }, [TestRepository]);
 
   useEffect(() => {
     getData();
   }, [getData]);
 
-  return <Result data={data} />;
+  return (
+    <>
+      {message ? (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            padding: "2rem",
+            maxWidth: "1000px",
+            margin: "auto",
+          }}
+        >
+          {message}
+        </div>
+      ) : null}
+      <Result data={data} />
+    </>
+  );
 };
 
 const Default: React.FC = () => {
   return (
     <>
-      <Row>
-        <Link to="new">시험 보기</Link>
-      </Row>
-      <Row>
-        <Link to="prev">이전 결과</Link>
-      </Row>
+      <div
+        style={{
+          alignItems: "center",
+          marginTop: "5rem",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <Row>
+          <Typography.Title style={{ color: "white" }} level={1}>
+            Test
+          </Typography.Title>
+        </Row>
+        <Row style={{ marginTop: "2rem" }}>
+          <Link to="new">
+            <Button>시험 보기</Button>
+          </Link>
+        </Row>
+        <Row style={{ marginTop: "2rem" }}>
+          <Link to="prev">
+            <Button>이전 결과</Button>
+          </Link>
+        </Row>
+      </div>
     </>
   );
 };

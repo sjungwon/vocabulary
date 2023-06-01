@@ -15,6 +15,7 @@ function App() {
         <Route path="study/*" element={<StudyLayout />}>
           <Route path="" element={<StudyPage.Default />} />
           <Route path="today" element={<StudyPage.Today />} />
+          <Route path="wrong" element={<StudyPage.Wrong />} />
         </Route>
         <Route path="test" element={<StudyLayout />}>
           <Route path="" element={<TestPage.Default />} />

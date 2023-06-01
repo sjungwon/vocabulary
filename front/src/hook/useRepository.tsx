@@ -42,11 +42,20 @@ const useVocabularyRepository = () => {
     return response.data;
   }, []);
 
+  const getWrongVoca = useCallback(async () => {
+    const response = await axios.get<
+      void,
+      AxiosResponse<ApiResponse<VocabularyType[]>>
+    >("/vocabulary/wrong");
+    return response.data;
+  }, []);
+
   const repo = useMemo(
     () => ({
       getTodayVoca,
+      getWrongVoca,
     }),
-    [getTodayVoca]
+    [getTodayVoca, getWrongVoca]
   );
 
   return repo;
@@ -66,7 +75,6 @@ const useTestRepository = () => {
       ExamAnswerType,
       AxiosResponse<ApiResponse<ExamResultType>>
     >("/vocabulary/test", answer);
-
     return response;
   }, []);
 

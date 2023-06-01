@@ -1,6 +1,6 @@
 import { Modal, Row } from "antd";
 import { useCallback, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import useRepository from "../hook/useRepository";
 
@@ -32,14 +32,17 @@ const LogoutLink: React.FC = () => {
 
   const { logout } = useAuth();
 
+  const navigate = useNavigate();
+
   const submitLogout = useCallback(async () => {
     try {
       await AuthRepository.logout();
     } catch (e) {
     } finally {
       logout();
+      navigate("/");
     }
-  }, [AuthRepository, logout]);
+  }, [AuthRepository, logout, navigate]);
 
   const openConfirm = () => {
     confirm({
@@ -75,7 +78,7 @@ const MyMenu: React.FC = () => {
   const { user } = useAuth();
 
   const defaultMenu = useMemo(() => {
-    return ["Study", "Test", "Analysis"].map((s) => (
+    return ["Study", "Test"].map((s) => (
       <MenuLink to={s.toLowerCase()} text={s} key={s} />
     ));
   }, []);
@@ -87,6 +90,7 @@ const MyMenu: React.FC = () => {
   return (
     <>
       {user ? logoutLink : loginLink}
+      <MenuLink to="/" text="Home" />
       {defaultMenu}
     </>
   );
