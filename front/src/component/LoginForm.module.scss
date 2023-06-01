@@ -1,0 +1,37 @@
+.my_btn {
+  background-color: #fcde3d;
+  width: 100%;
+  max-width: 15rem;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid #fcde3d;
+}
+
+.my_btn:hover {
+  background-color: #fee453;
+  color: gray;
+}
+
+.my_btn:active {
+  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  color: black;
+}
+
+.black_btn {
+  background-color: black;
+  width: 100%;
+  max-width: 15rem;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+}
+
+.black_btn:hover {
+  background-color: rgb(18, 18, 18);
+  color: rgb(220, 220, 220);
+}
+
+.black_btn:active {
+  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  color: white;
+}
