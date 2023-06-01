@@ -13,6 +13,7 @@ import domhwangcha.voca.service.dto.vocabulary.response.ExamResultDto;
 import domhwangcha.voca.service.dto.vocabulary.VocaDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -101,7 +102,22 @@ public class VocabularyService {
         return new ExamResultDto(exam);
     }
 
+    public ExamResultDto getPrevResult(Long memberId){
+        List<Exam> id = this.examRepository.findFetchDoneByMemberId(memberId, PageRequest.of(0, 1, Sort.by(Sort.Direction.DESC, "id")));
+        Exam exam = id.get(0);
+        if(exam == null){
+            throw new NotFoundException();
+        }
+        return new ExamResultDto(exam);
+    }
+
+
+    //=================================
+    //PRIVATE
+    //================================
     private Member getRequestMember(Long memberId) {
         return this.memberRepository.findById(memberId).orElseThrow(UnauthorizedException::new);
     }
+
+
 }

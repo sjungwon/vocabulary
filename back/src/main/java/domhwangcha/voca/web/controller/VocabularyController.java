@@ -51,4 +51,10 @@ public class VocabularyController {
         ExamResultDto examResultDto = this.vocabularyService.markingExam(examAnswerDto);
         return new ApiResponse<>(examResultDto);
     }
+
+    @GetMapping("test/prev")
+    public ApiResponse<ExamResultDto> getPrevResult(@LoginMember UserSession userSession){
+        ExamResultDto prevResult = this.vocabularyService.getPrevResult(userSession.getId());
+        return new ApiResponse<>(prevResult);
+    }
 }
