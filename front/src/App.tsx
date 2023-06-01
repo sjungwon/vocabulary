@@ -5,6 +5,7 @@ import DefaultPage from "./page/DefaultPage";
 import StudyPage from "./page/StudyPage";
 import StudyLayout from "./layout/StudyLayout";
 import TestPage from "./page/TestPage";
+import RegisterPage from "./page/RegisterPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<DefaultPage />} />
         <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
         <Route path="study/*" element={<StudyLayout />}>
           <Route path="" element={<StudyPage.Default />} />
           <Route path="today" element={<StudyPage.Today />} />

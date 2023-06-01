@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { useCallback, useMemo } from "react";
-import { LoginFormType } from "../type/auth.type";
+import { LoginFormType, RegisterFormType } from "../type/auth.type";
 import { ApiResponse } from "../type/repository.type";
 import { VocabularyType } from "../type/vocabulary.type";
 import { ExamAnswerType, ExamResultType, ExamType } from "../type/exam.type";
@@ -11,8 +11,15 @@ const useAuthRepository = () => {
       LoginFormType,
       AxiosResponse<ApiResponse<string>>
     >("/auth/login", loginForm);
-    const response = axiosResponse.data;
-    return response;
+    return axiosResponse.data;
+  }, []);
+
+  const register = useCallback(async (registerForm: RegisterFormType) => {
+    const axiosResponse = await axios.post<
+      RegisterFormType,
+      AxiosResponse<ApiResponse<string>>
+    >("auth/register", registerForm);
+    return axiosResponse.data;
   }, []);
 
   const logout = useCallback(async () => {
@@ -26,8 +33,9 @@ const useAuthRepository = () => {
     () => ({
       login,
       logout,
+      register,
     }),
-    [login, logout]
+    [login, logout, register]
   );
 
   return repo;
