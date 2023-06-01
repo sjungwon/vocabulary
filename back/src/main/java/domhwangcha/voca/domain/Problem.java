@@ -16,6 +16,10 @@ public class Problem {
     @GeneratedValue
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name = "test_id")
     private Exam exam;
@@ -32,9 +36,10 @@ public class Problem {
 
     public Problem(Exam exam, Vocabulary answer) {
         this.exam = exam;
+        this.member = exam.getMember();
         exam.getProblems().add(this);
         this.answer = answer;
-        this.status = ProblemStatus.WRONG;
+        this.status = ProblemStatus.CREATED;
     }
 
     public void correctAnswer(Long answerId){

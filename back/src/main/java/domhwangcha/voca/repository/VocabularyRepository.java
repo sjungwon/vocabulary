@@ -20,6 +20,13 @@ public interface VocabularyRepository extends JpaRepository<Vocabulary, Long> {
     List<Vocabulary> findAllMemberVocabulary(@Param("memberId") Long memberId, Pageable pageable);
 
     List<Vocabulary> findByIdNotIn(Collection<Long> ids, Pageable pageable);
+    @Query("SELECT distinct v " +
+            "FROM Problem p " +
+            "JOIN p.answer v " +
+            "WHERE p.status = 'WRONG' " +
+            "AND p.member.id = :memberId " +
+            "AND v.id NOT IN (SELECT v2.id FROM Problem p2 JOIN p2.answer v2 WHERE p2.status = 'CORRECT' AND p2.member.id = :memberId)")
+    List<Vocabulary> findWrongVocabularyByMemberId(@Param("memberId") Long memberId, Pageable pageable);
 }
 
 //

@@ -40,6 +40,12 @@ public class VocabularyService {
         return byMemberId.stream().map(VocaDto::new).collect(Collectors.toList());
     }
 
+    public List<VocaDto> getWrongVoca(Long memberId){
+        List<Vocabulary> wrongVocabularyByMemberId = this.vocabularyRepository.findWrongVocabularyByMemberId(memberId, PageRequest.of(0,20));
+
+        return wrongVocabularyByMemberId.stream().map(VocaDto::new).collect(Collectors.toList());
+    }
+
     @Transactional
     public ExamDto getTest(Long memberId){
         //요청 회원 조회
@@ -104,10 +110,13 @@ public class VocabularyService {
 
     public ExamResultDto getPrevResult(Long memberId){
         List<Exam> id = this.examRepository.findFetchDoneByMemberId(memberId, PageRequest.of(0, 1, Sort.by(Sort.Direction.DESC, "id")));
-        Exam exam = id.get(0);
-        if(exam == null){
+
+        if(id.size() < 1){
             throw new NotFoundException();
         }
+
+        Exam exam = id.get(0);
+
         return new ExamResultDto(exam);
     }
 

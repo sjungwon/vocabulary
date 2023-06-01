@@ -33,6 +33,12 @@ public class VocabularyController {
         return new ApiResponse<>(dailyVocabulary);
     }
 
+    @GetMapping("wrong")
+    public ApiResponse<List<VocaDto>> getWrongVocabulary(@LoginMember UserSession userSession){
+        List<VocaDto> wrongVoca = this.vocabularyService.getWrongVoca(userSession.getId());
+        return new ApiResponse<>(wrongVoca);
+    }
+
     @GetMapping("test")
     public ApiResponse<ExamDto> getTest(@LoginMember UserSession userSession){
         ExamDto test = this.vocabularyService.getTest(userSession.getId());
