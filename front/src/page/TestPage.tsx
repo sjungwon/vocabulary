@@ -8,7 +8,7 @@ import {
 } from "../type/exam.type";
 import useRepository from "../hook/useRepository";
 import { Button, Radio, Row, Space, Tag, Typography } from "antd";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { AxiosError, AxiosResponse } from "axios";
 import { ErrorResponse } from "../type/repository.type";
@@ -252,8 +252,6 @@ const PrevResult: React.FC = () => {
   const [data, setData] = useState<ExamResultType | null>(null);
 
   const { TestRepository } = useRepository();
-
-  const navigate = useNavigate();
 
   const [message, setMessage] = useState<string>("");
 
