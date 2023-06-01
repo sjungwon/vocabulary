@@ -127,7 +127,6 @@ const Today: React.FC = () => {
         padding: "2rem",
         maxWidth: "1000px",
         margin: "auto",
-        overflow: "auto",
       }}
     >
       {voca.map((v) => (

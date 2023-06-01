@@ -21,7 +21,7 @@ const DefaultLayout: React.FC = () => {
         <Row style={{ height: "20%" }}></Row>
       </Sider>
       <Layout>
-        <Header style={{ background: "#071c38", height: "10%" }}></Header>
+        <Header style={{ background: "#071c38", height: "5%" }}></Header>
         <Content
           style={{
             background: "#071c38",
@@ -32,7 +32,7 @@ const DefaultLayout: React.FC = () => {
         >
           <Outlet />
         </Content>
-        <Footer style={{ background: "#071c38", height: "10%" }}></Footer>
+        <Footer style={{ background: "#071c38", height: "5%" }}></Footer>
       </Layout>
     </Layout>
   );

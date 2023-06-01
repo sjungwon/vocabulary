@@ -3,6 +3,7 @@ import { useCallback, useMemo } from "react";
 import { LoginFormType } from "../type/auth.type";
 import { ApiResponse } from "../type/repository.type";
 import { VocabularyType } from "../type/vocabulary.type";
+import { ExamAnswerType, ExamResultType, ExamType } from "../type/exam.type";
 
 const useAuthRepository = () => {
   const login = useCallback(async (loginForm: LoginFormType) => {
@@ -51,13 +52,42 @@ const useVocabularyRepository = () => {
   return repo;
 };
 
+const useTestRepository = () => {
+  const getTest = useCallback(async () => {
+    const response = await axios.get<
+      void,
+      AxiosResponse<ApiResponse<ExamType>>
+    >("/vocabulary/test");
+    return response.data;
+  }, []);
+
+  const postAnswer = useCallback(async (answer: ExamAnswerType) => {
+    const response = await axios.post<
+      ExamAnswerType,
+      AxiosResponse<ApiResponse<ExamResultType>>
+    >("/vocabulary/test", answer);
+
+    return response;
+  }, []);
+
+  const repo = useMemo(
+    () => ({
+      getTest,
+      postAnswer,
+    }),
+    [getTest, postAnswer]
+  );
+
+  return repo;
+};
+
 const useRepository = () => {
   const AuthRepository = useAuthRepository();
   const VocabularyRepository = useVocabularyRepository();
-
+  const TestRepository = useTestRepository();
   const repo = useMemo(
-    () => ({ AuthRepository, VocabularyRepository }),
-    [AuthRepository, VocabularyRepository]
+    () => ({ AuthRepository, VocabularyRepository, TestRepository }),
+    [AuthRepository, TestRepository, VocabularyRepository]
   );
   return repo;
 };
