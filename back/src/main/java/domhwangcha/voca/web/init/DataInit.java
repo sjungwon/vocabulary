@@ -41,6 +41,9 @@ public class DataInit {
             VocaData[] vocaData = objectMapper.readValue(file, VocaData[].class);
             Set<VocaData> collect = Arrays.stream(vocaData).collect(Collectors.toSet());
             for (VocaData data : collect) {
+                if(data.korean == null){
+                    continue;
+                }
                 Vocabulary build = Vocabulary.builder()
                         .korean(data.korean)
                         .english(data.english)
