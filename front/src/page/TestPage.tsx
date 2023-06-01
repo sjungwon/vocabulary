@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   AnswerType,
   ExamResultType,
@@ -8,9 +8,9 @@ import {
 } from "../type/exam.type";
 import useRepository from "../hook/useRepository";
 import { Button, Radio, Row, Space, Tag, Typography } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { ErrorResponse } from "../type/repository.type";
 
 type ProblemProps = {
@@ -72,7 +72,7 @@ const ResultElem: React.FC<ResultElemProps> = ({ data }) => {
           color={data.status === "CORRECT" ? "green" : "red"}
         >{`정답: ${data.korean}`}</Tag>
       </Row>
-      <Row>
+      <Row style={{ marginBottom: "1rem" }}>
         <Radio.Group
           buttonStyle="solid"
           defaultValue={defaultValue}
@@ -248,6 +248,34 @@ const Test: React.FC = () => {
   return <Result data={result} />;
 };
 
+const PrevResult: React.FC = () => {
+  const [data, setData] = useState<ExamResultType | null>(null);
+
+  const { TestRepository } = useRepository();
+
+  const navigate = useNavigate();
+
+  const getData = useCallback(async () => {
+    try {
+      const response = await TestRepository.getPrevResult();
+      setData(response.data);
+    } catch (e) {
+      const err = e as AxiosError;
+      console.log(err);
+      if (err.response?.status === 404) {
+        window.alert("완료된 시험이 존재하지 않습니다.");
+        navigate("/test");
+      }
+    }
+  }, [TestRepository, navigate]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
+
+  return <Result data={data} />;
+};
+
 const Default: React.FC = () => {
   return (
     <>
@@ -264,6 +292,7 @@ const Default: React.FC = () => {
 const TestPage = {
   Default,
   Test,
+  PrevResult,
 };
 
 export default TestPage;

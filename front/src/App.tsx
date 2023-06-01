@@ -19,6 +19,7 @@ function App() {
         <Route path="test" element={<StudyLayout />}>
           <Route path="" element={<TestPage.Default />} />
           <Route path="new" element={<TestPage.Test />} />
+          <Route path="prev" element={<TestPage.PrevResult />} />
         </Route>
       </Route>
     </Routes>

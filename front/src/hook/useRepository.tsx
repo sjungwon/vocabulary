@@ -70,12 +70,21 @@ const useTestRepository = () => {
     return response;
   }, []);
 
+  const getPrevResult = useCallback(async () => {
+    const response = await axios.get<
+      void,
+      AxiosResponse<ApiResponse<ExamResultType>>
+    >("/vocabulary/test/prev");
+    return response.data;
+  }, []);
+
   const repo = useMemo(
     () => ({
       getTest,
       postAnswer,
+      getPrevResult,
     }),
-    [getTest, postAnswer]
+    [getPrevResult, getTest, postAnswer]
   );
 
   return repo;
