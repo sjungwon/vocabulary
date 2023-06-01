@@ -23,7 +23,7 @@ public class Exam {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "exam")
     private List<Problem> problems = new ArrayList<>();
 
     @Enumerated(value = EnumType.STRING)
