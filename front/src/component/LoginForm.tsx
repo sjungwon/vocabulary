@@ -1,11 +1,11 @@
-import { Button, Form, Input, Space, Typography } from "antd";
+import { Form, Input, Space, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { LoginFormType } from "../type/auth.type";
 import useRepository from "../hook/useRepository";
 import { useState } from "react";
 import styles from "./LoginForm.module.scss";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [form] = useForm<LoginFormType>();
@@ -36,7 +36,6 @@ const LoginForm = () => {
       const response = await AuthRepository.login(requestData);
       login(response.data);
       setGlobalError("");
-      console.log(response);
     } catch (e) {
       setGlobalError("가입되지 않은 회원이거나 잘못된 암호를 입력하셨습니다.");
     }
@@ -57,9 +56,11 @@ const LoginForm = () => {
         <button type="submit" className={styles.my_btn}>
           {"Sign in"}
         </button>
-        <button type="button" className={styles.my_btn}>
-          {"Sign up"}
-        </button>
+        <Link to="/register" style={{ color: "black" }}>
+          <button type="button" className={styles.my_btn}>
+            {"Sign up"}
+          </button>
+        </Link>
       </Space>
     </Form>
   );

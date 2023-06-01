@@ -41,7 +41,6 @@ export const AuthProvider: Provider = ({ children }) => {
       >("/auth/session");
       setUser(response.data.data);
     } catch (e) {
-      console.log(e);
     } finally {
       setStatus("DONE");
     }

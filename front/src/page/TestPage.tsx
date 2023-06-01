@@ -53,10 +53,7 @@ type ResultElemProps = {
 
 const ResultElem: React.FC<ResultElemProps> = ({ data }) => {
   const selected = data.passages.filter((p) => p.status === "SELECT");
-  console.log(selected);
   const defaultValue = selected[0]?.korean || data.korean;
-
-  console.log(defaultValue);
 
   return (
     <>
@@ -195,7 +192,6 @@ const Test: React.FC = () => {
 
     if (realAnswer.length !== 10) {
       window.alert("모든 문제를 풀어주세요.");
-      console.log(answers);
       return;
     }
 
@@ -261,7 +257,6 @@ const PrevResult: React.FC = () => {
       setData(response.data);
     } catch (e) {
       const err = e as AxiosError;
-      console.log(err);
       if (err.response?.status === 404) {
         setMessage("완료된 시험이 없습니다.");
       }
