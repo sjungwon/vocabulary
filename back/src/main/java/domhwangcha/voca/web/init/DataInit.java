@@ -36,7 +36,8 @@ public class DataInit {
     @EventListener(ApplicationReadyEvent.class)
     @Transactional
     void init() throws IOException {
-        File file = new File("back/src/main/resources/voca.json");
+        String userPath = System.getProperty("user.dir");
+        File file = new File(userPath+"/src/main/resources/voca.json");
         if(file.exists()){
             VocaData[] vocaData = objectMapper.readValue(file, VocaData[].class);
             Set<VocaData> collect = Arrays.stream(vocaData).collect(Collectors.toSet());
